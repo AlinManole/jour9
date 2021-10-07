@@ -23,20 +23,37 @@
 //03 - Format 
 
 function formatDate(str){
-    var test = new Date(str)
+    var theDate = new Date(str)
     // console.log(test)
-    var day = test.getDate()
+    var day = theDate.getDate()
     if (day < 10){
         day = '0' + day;
     }
-    var month = test.getMonth()+1
+    var month = theDate.getMonth()+1
     if (month < 10){
         month = '0' + month;
     }
-    var year = test.getFullYear()
+    var year = theDate.getFullYear()
     console.log(`${day}/${month}/${year}`)
 }
 
     formatDate("1985-4-4")
 
 //04 -  Age 
+
+    function calculateAge(myAge){
+        var dateNow = new Date()
+        var newDate = new Date(myAge)
+        var ageDiference = dateNow - newDate 
+        var curentAge = ((( ageDiference / 1000 ) / 3600 ) / 24 ) / 365
+        var exactAge = curentAge.toFixed(1)
+        console.log(exactAge)
+
+
+    }
+
+    calculateAge("1985-11-30")
+
+    
+
+    
