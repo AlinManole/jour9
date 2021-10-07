@@ -30,7 +30,7 @@ function formatDate(str){
         day = '0' + day;
     }
     var month = theDate.getMonth()+1
-    if (month < 10){
+    if (month < 10 ){
         month = '0' + month;
     }
     var year = theDate.getFullYear()
