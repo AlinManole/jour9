@@ -1,87 +1,99 @@
-//01 - Aujourd'hui
-
-    function whatDayIsToday(){
-        var todayVar = new Date().getDay()
-        var weekday = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
-        console.log("Aujourd'hui nous sommes" , weekday[todayVar] )
-    }
-
-    whatDayIsToday()
-
-//02 - Mois Courant
-
-    function whatMonthIsIt(){
-        var monthVar = new Date().getMonth()
-        var month = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];
-        console.log("Aujourd'hui nous sommes" , month[monthVar] )
-    }
-
-    whatMonthIsIt()
-
-    console.log()
-
-//03 - Format 
-
-function formatDate(str){
-    var theDate = new Date(str)
-    // console.log(test)
-    var day = theDate.getDate()
-    if (day < 10){
-        day = '0' + day;
-    }
-    var month = theDate.getMonth()+1
-    if (month < 10 ){
-        month = '0' + month;
-    }
-    var year = theDate.getFullYear()
-    console.log(`${day}/${month}/${year}`)
-}
-
-    formatDate("1985-4-4")
-
-
-    
-
-
-//04 -  Age 
-
-    // function calculateAge(myAge){
-    //     var dateNow = new Date()
-    //     var newDate = new Date(myAge)
-    //     var ageDiference = dateNow - newDate 
-    //     var curentAge = ((( ageDiference / 1000 ) / 3600 ) / 24 ) / 365
-    //     var exactAge = curentAge.toFixed(1)
-    //     console.log(exactAge)
-
-
+function breakLines() {
+    console.log("")
+    console.log("")
+  }
+  
+  // Today
+  
+  // 1- Méthode classique
+  function whatDayIsToday() {
+    var date = new Date()
+    var day = date.getDay()
+    var week = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"]
+  
+    console.log(`Aujourd'hui nous sommes ${week[day]}`)
+  }
+  
+  whatDayIsToday()
+  breakLines()
+  
+  // 2 - Month
+  
+  // 1 - Méthode classique
+  function whatMonthIsIt() {
+    const monthes = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','September','Octobre','Novembre','Décembre']
+    var date = new Date()
+    var result = monthes[date.getMonth()]
+    var isVowel = result === "Avril" || result === "Août" || result === "Octobre"
+    var word = isVowel ? "d'" : "de "
+    // =>
+    // if (isVowel) {
+    //   word = "d'"
+    // } else {
+    //   word = "de"
     // }
-
-    // calculateAge("1985-11-30")
-
+  
+    console.log(`Aujourd'hui nous sommes au mois ${word}${result}`)
+  }
+  
+  whatMonthIsIt()
+  breakLines()
+  
+  // Format
+  // 1 - Méthode classique
+  // a - Easy mode
+  function formatDateEasy(str) {
+    var date = new Date(str)
+    var format = date.toLocaleDateString()
+    console.log(format)
+  }
+  
+  // b - Relou mode
+  function formatDateRelou(str) {
+    var date = new Date(str)
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
     
-
-    function calculateAge(birthDays) {
-        var birthDay = new Date(birthDays)
-        var todayYear = new Date().getFullYear()
-        var todayMonth = new Date().getMonth()
-        var todayDay = new Date().getDate()
-        var birthDayYear = birthDay.getFullYear()
-        var birthDayMonth = birthDay.getMonth() + 1
-        var birthDayDay = birthDay.getDate()
-        var age
-    
-        age = todayYear - birthDayYear, todayMonth - birthDayMonth,
-                todayDay - birthDayDay
-    
-    
-        if (birthDayMonth > todayMonth) {
-            birthDays = age - 1
-            console.log(birthDays)
-        } else {
-            console.log(age)
-        }
-        return age
+    month = month < 10 ? `0${month}` : month
+    day = day < 10 ? `0${day}` : day
+  
+    console.log(`${day}/${month}/${year}`)
+  }
+  
+  formatDateEasy("2020-10-20")
+  breakLines()
+  formatDateRelou("2021-01-22")
+  breakLines()
+  
+  //  Age
+  // Methode longue
+  function calculateAgeRelou(str) {
+    var birthday = new Date(str)
+    var yearBirthday = birthday.getFullYear()
+    var today = new Date()
+    var todayYear = today.getFullYear()
+    var result = todayYear - yearBirthday
+    var monthBirthday = birthday.getMonth()
+    var todayMonth = today.getMonth()
+  
+    if (monthBirthday > todayMonth) {
+      console.log(result - 1)
+    } else {
+      console.log(result)
     }
-    
-    var yearOld = calculateAge("1985-11-30")
-
+  }
+  
+  // Easy mode
+  function calculateAgeEasy(str) {
+    var age = new Date(new Date() - new Date(str))
+    console.log(age.getFullYear() - 1970)
+  }
+  
+  calculateAgeRelou("1950-12-06")
+  breakLines()
+  calculateAgeEasy("1980-12-06")
+  breakLines()
+  
+  
+  module.exports = breakLines
