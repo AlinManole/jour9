@@ -12,8 +12,8 @@
 
     function whatMonthIsIt(){
         var monthVar = new Date().getMonth()
-        var weekday = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];
-        console.log("Aujourd'hui nous sommes" , weekday[monthVar] )
+        var month = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];
+        console.log("Aujourd'hui nous sommes" , month[monthVar] )
     }
 
     whatMonthIsIt()
@@ -39,21 +39,49 @@ function formatDate(str){
 
     formatDate("1985-4-4")
 
+
+    
+
+
 //04 -  Age 
 
-    function calculateAge(myAge){
-        var dateNow = new Date()
-        var newDate = new Date(myAge)
-        var ageDiference = dateNow - newDate 
-        var curentAge = ((( ageDiference / 1000 ) / 3600 ) / 24 ) / 365
-        var exactAge = curentAge.toFixed(1)
-        console.log(exactAge)
+    // function calculateAge(myAge){
+    //     var dateNow = new Date()
+    //     var newDate = new Date(myAge)
+    //     var ageDiference = dateNow - newDate 
+    //     var curentAge = ((( ageDiference / 1000 ) / 3600 ) / 24 ) / 365
+    //     var exactAge = curentAge.toFixed(1)
+    //     console.log(exactAge)
 
 
+    // }
+
+    // calculateAge("1985-11-30")
+
+    
+
+    function calculateAge(birthDays) {
+        var birthDay = new Date(birthDays)
+        var todayYear = new Date().getFullYear()
+        var todayMonth = new Date().getMonth()
+        var todayDay = new Date().getDate()
+        var birthDayYear = birthDay.getFullYear()
+        var birthDayMonth = birthDay.getMonth() + 1
+        var birthDayDay = birthDay.getDate()
+        var age
+    
+        age = todayYear - birthDayYear, todayMonth - birthDayMonth,
+                todayDay - birthDayDay
+    
+    
+        if (birthDayMonth > todayMonth) {
+            birthDays = age - 1
+            console.log(birthDays)
+        } else {
+            console.log(age)
+        }
+        return age
     }
-
-    calculateAge("1985-11-30")
-
     
+    var yearOld = calculateAge("1985-11-30")
 
-    
